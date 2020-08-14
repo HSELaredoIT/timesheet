@@ -38,7 +38,7 @@ window.onload = function () {
   for (var i = 0; i <= dates.length; ++i) {
     var option = document.createElement("option");
     option.text = dates[i][0] + " - " + dates[i][1];
-    option.value = i + 1;
+    option.value = i;
     select.appendChild(option);
   }
 };
@@ -102,8 +102,8 @@ function getMonday(d) {
 $(window).on("load", function () {
   var x = jQuery("#PeriodSelector");
   x.change(function () {
-    if ($(this).val() != "period0") {
-      var period = jQuery("#PeriodSelector").val() - 1;
+    if ($(this).val() != "null") {
+      var period = jQuery("#PeriodSelector").val();
       $("#submitdate1").html(dates[period][2]);
       $("#submitdate2").html(dates[period][3]);
       filldays(getMonday(dates[period][0]));
@@ -338,7 +338,7 @@ function calculate() {
   var Period_chosen = jQuery("#PeriodSelector");
   var campus_chosen = jQuery("#CampusSelector");
 
-  if (Period_chosen.val() == "period0") {
+  if (Period_chosen.val() == "null") {
     alert("Please choose the pay period before entering time");
     $("#PeriodSelector").focus();
   }
