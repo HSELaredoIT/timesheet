@@ -34,6 +34,13 @@ var dates = [
 ];
 
 window.onload = function () {
+  var title = document.getElementById("Title");
+  $("#Title").html(
+    "HPS NonExempt Employee Time Sheet " +
+      dates[0][0].substring(6, 10) +
+      "-" +
+      dates[23][3].substring(6, 10)
+  );
   var select = document.getElementById("PeriodSelector");
   for (var i = 0; i <= dates.length; ++i) {
     var option = document.createElement("option");
