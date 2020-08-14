@@ -38,8 +38,7 @@ window.onload = function () {
   for (var i = 0; i <= dates.length; ++i) {
     var option = document.createElement("option");
     option.text = dates[i][0] + " - " + dates[i][1];
-    var item = i + 1;
-    option.value = "period" + item;
+    option.value = i + 1;
     select.appendChild(option);
   }
 };
@@ -66,11 +65,11 @@ $(window).on("load", function () {
     }
 
     if (
-      $(this).val() == "period3" ||
-      $(this).val() == "period9" ||
-      $(this).val() == "period13" ||
-      $(this).val() == "period21" ||
-      $(this).val() == "period24"
+      $(this).val() == "3" ||
+      $(this).val() == "9" ||
+      $(this).val() == "13" ||
+      $(this).val() == "21" ||
+      $(this).val() == "24"
     ) {
       $("#week3").fadeIn(1000);
     } else {
@@ -92,129 +91,22 @@ $(window).on("load", function () {
         }
         */
 
+function getMonday(d) {
+  d = new Date(d);
+  var day = d.getDay(),
+    diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
+  return new Date(d.setDate(diff));
+}
+
 // Function to fill out week days
 $(window).on("load", function () {
   var x = jQuery("#PeriodSelector");
   x.change(function () {
-    if ($(this).val() == "period1") {
-      $("#submitdate1").html("08/18/2020");
-      $("#submitdate2").html("08/31/2020");
-      filldays("2020-07-27");
-    }
-    if ($(this).val() == "period2") {
-      $("#submitdate1").html("08/01/2020");
-      $("#submitdate2").html("09/15/2020");
-      filldays("2020-08-17");
-    }
-    if ($(this).val() == "period3") {
-      $("#submitdate1").html("09/15/2020");
-      $("#submitdate2").html("09/30/2020");
-      filldays("2020-08-31");
-    }
-    if ($(this).val() == "period4") {
-      $("#submitdate1").html("09/29/2020");
-      $("#submitdate2").html("10/15/2020");
-      filldays("2020-09-14");
-    }
-    if ($(this).val() == "period5") {
-      $("#submitdate1").html("10/20/2020");
-      $("#submitdate2").html("10/30/2020");
-      filldays("2020-09-28");
-    }
-    if ($(this).val() == "period6") {
-      $("#submitdate1").html("11/03/2020");
-      $("#submitdate2").html("11/13/2020");
-      filldays("2020-10-19");
-    }
-    if ($(this).val() == "period7") {
-      $("#submitdate1").html("11/17/2020");
-      $("#submitdate2").html("11/30/2020");
-      filldays("2020-11-02");
-    }
-    if ($(this).val() == "period8") {
-      $("#submitdate1").html("12/01/2020");
-      $("#submitdate2").html("12/15/2020");
-      filldays("2020-11-16");
-    }
-    if ($(this).val() == "period9") {
-      $("#submitdate1").html("12/15/2020");
-      $("#submitdate2").html("12/31/2020");
-      filldays("2020-11-30");
-    }
-    if ($(this).val() == "period10") {
-      $("#submitdate1").html("12/29/2021");
-      $("#submitdate2").html("01/15/2021");
-      filldays("2020-12-14");
-    }
-    if ($(this).val() == "period11") {
-      $("#submitdate1").html("01/12/2021");
-      $("#submitdate2").html("01/29/2021");
-      filldays("2020-12-28");
-    }
-    if ($(this).val() == "period12") {
-      $("#submitdate1").html("01/26/2021");
-      $("#submitdate2").html("02/12/2021");
-      filldays("2021-01-11");
-    }
-    if ($(this).val() == "period13") {
-      $("#submitdate1").html("02/16/2021");
-      $("#submitdate2").html("02/26/2021");
-      filldays("2021-01-25");
-    }
-    if ($(this).val() == "period14") {
-      $("#submitdate1").html("03/02/2021");
-      $("#submitdate2").html("03/15/2021");
-      filldays("2021-02-15");
-    }
-    if ($(this).val() == "period15") {
-      $("#submitdate1").html("03/16/2021");
-      $("#submitdate2").html("03/31/2021");
-      filldays("2021-03-01");
-    }
-    if ($(this).val() == "period16") {
-      $("#submitdate1").html("03/30/2021");
-      $("#submitdate2").html("04/15/2021");
-      filldays("2021-03-15");
-    }
-    if ($(this).val() == "period17") {
-      $("#submitdate1").html("04/13/2021");
-      $("#submitdate2").html("04/30/2021");
-      filldays("2021-03-29");
-    }
-    if ($(this).val() == "period18") {
-      $("#submitdate1").html("04/27/2021");
-      $("#submitdate2").html("05/14/2021");
-      filldays("2021-04-12");
-    }
-    if ($(this).val() == "period19") {
-      $("#submitdate1").html("05/18/2021");
-      $("#submitdate2").html("05/28/2021");
-      filldays("2021-04-26");
-    }
-    if ($(this).val() == "period20") {
-      $("#submitdate1").html("06/01/2021");
-      $("#submitdate2").html("06/15/2021");
-      filldays("2021-05-17");
-    }
-    if ($(this).val() == "period21") {
-      $("#submitdate1").html("06/15/2021");
-      $("#submitdate2").html("06/30/2021");
-      filldays("2021-05-31");
-    }
-    if ($(this).val() == "period22") {
-      $("#submitdate1").html("07/06/2021");
-      $("#submitdate2").html("07/15/2021");
-      filldays("2021-06-14");
-    }
-    if ($(this).val() == "period23") {
-      $("#submitdate1").html("07/20/2021");
-      $("#submitdate2").html("07/30/2021");
-      filldays("2021-07-05");
-    }
-    if ($(this).val() == "period24") {
-      $("#submitdate1").html("08/02/2021");
-      $("#submitdate2").html("08/13/2021");
-      filldays("2021-07-19");
+    if ($(this).val() != "period0") {
+      var period = jQuery("#PeriodSelector").val() - 1;
+      $("#submitdate1").html(dates[period][2]);
+      $("#submitdate2").html(dates[period][3]);
+      filldays(getMonday(dates[period][0]));
     }
     calculate();
     $(".holidayWarning").show();
@@ -253,7 +145,7 @@ $(window).on("load", function () {
     var year_of_date = 0;
 
     for (k = 0; k < 21; k++) {
-      var d = new Date(sent_date.replace(/-/g, "/").replace(/T.+/, "")); //If .replace not added, JS gives returns one previous day for new Date
+      var d = new Date(sent_date); //If .replace not added, JS gives returns one previous day for new Date
 
       d.setDate(d.getDate() + k);
 
@@ -277,7 +169,7 @@ $(window).on("load", function () {
     } //Iteration ends here
 
     // Hide August 1, 2 - 2020
-    if (jQuery("#PeriodSelector").val() == "period24") {
+    if (jQuery("#PeriodSelector").val() == "24") {
       $("#day19").html("");
       $("#holiday19").hide();
       $("#day20").html("");
@@ -658,7 +550,7 @@ function calculate() {
 
     // Eliminate time entry for August 1,2 - 2020
 
-    if (jQuery("#PeriodSelector").val() == "period24") {
+    if (jQuery("#PeriodSelector").val() == "24") {
       jQuery("#total_d29").html("");
       jQuery("#total_d30").html("");
       if (i == 29 || i == 30) {
@@ -684,11 +576,11 @@ function calculate() {
     // Eliminate absence calculated for 3rd week on 2 week periods
     // $(this).val() == 'period3' || $(this).val() == 'period9' || $(this).val() == 'period13' || $(this).val() == 'period21' || $(this).val() == 'period24'
     if (
-      jQuery("#PeriodSelector").val() != "period3" &&
-      jQuery("#PeriodSelector").val() != "period9" &&
-      jQuery("#PeriodSelector").val() != "period13" &&
-      jQuery("#PeriodSelector").val() != "period21" &&
-      jQuery("#PeriodSelector").val() != "period24"
+      jQuery("#PeriodSelector").val() != "3" &&
+      jQuery("#PeriodSelector").val() != "9" &&
+      jQuery("#PeriodSelector").val() != "13" &&
+      jQuery("#PeriodSelector").val() != "21" &&
+      jQuery("#PeriodSelector").val() != "24"
     ) {
       if (i == 24 || i == 25 || i == 26 || i == 27 || i == 28) {
         dailyAbsence = 0;
@@ -855,11 +747,11 @@ function calculate() {
 
   // Eliminate scheduled hours for 3rd week on 2 week periods
   if (
-    jQuery("#PeriodSelector").val() != "period3" &&
-    jQuery("#PeriodSelector").val() != "period9" &&
-    jQuery("#PeriodSelector").val() != "period13" &&
-    jQuery("#PeriodSelector").val() != "period21" &&
-    jQuery("#PeriodSelector").val() != "period24"
+    jQuery("#PeriodSelector").val() != "3" &&
+    jQuery("#PeriodSelector").val() != "9" &&
+    jQuery("#PeriodSelector").val() != "13" &&
+    jQuery("#PeriodSelector").val() != "21" &&
+    jQuery("#PeriodSelector").val() != "24"
   ) {
     week_3_scheduled = 0;
   }
